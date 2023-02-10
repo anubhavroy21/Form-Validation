@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Form Validation</title>
+</head>
+<body style="background-color: burlywood;">
+    <h1 class="text-center bg-dark text-white-50">Form Validation using Javascript</h1>
+    <div class="container">
+        <form onsubmit="return validation()">
+            <div class="form-group">
+                <label for="Name">Full Name:</label>
+                <input type="text" name="" id="FullName" class="form-control">
+                <span id="usererror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label for="Email-Id">Email Id:</label>
+                <input type="text" name="" id="Email" class="form-control">
+                <span id="emailerror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label for="Mobile Number">Mobile Number:</label>
+                <input type="text" name="" id="Mobile Number" class="form-control">
+                <span id="mobileerror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input type="password" name="" id="password" class="form-control"><br>
+                <input type="checkbox" onclick="myFunction()">Show Password
+                <span id="passworderror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label for="Confirm Password">Confirm Password:</label>
+                <input type="password" name="" id="confirm password" class="form-control"><br>
+                <input type="checkbox" onclick="myFunction1()">Show Password
+                <span id="cpassworderror" class="text-danger font-weight-bold"></span>
+            </div>
+            <input type="Submit" name="" class="btn btn-primary">
+        </form>
+    </div>
+
+    <script type="text/javascript">
+            function validation(){
+            var Fullname = document.getElementById('FullName').value;
+            var Email = document.getElementById('Email').value;
+            var Mobile = document.getElementById('Mobile Number').value;
+            var Password = document.getElementById('password').value;
+            var CPassword = document.getElementById('confirm password').value;
+          var usercheck = /^[A-Za-z. ]{5,30}$/;
+          var passwordcheck = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/ ;
+          var emailcheck = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+          var mobilecheck = /^[789][0-9]{9}$/;
+          var pass = "Password"; 
+          var pass2= "password";
+          if(usercheck.test(Fullname)){
+            document.getElementById('usererror').innerHTML = " ";
+          }
+          else{
+            document.getElementById('usererror').innerHTML = "** Enter valid Full Name , name should not be less than 5 letters";
+            return false;
+          }
+          if(emailcheck.test(Email)){
+            document.getElementById('emailerror').innerHTML = " ";
+          }
+          else{
+            document.getElementById('emailerror').innerHTML = "** Enter valid Email-Id";
+            return false;
+          }
+          if(mobilecheck.test(Mobile)){
+            document.getElementById('mobileerror').innerHTML = " ";
+          }
+          else{
+            document.getElementById('mobileerror').innerHTML = "** Enter valid Mobile Number";
+            return false;
+          }
+          if(passwordcheck.test(Password)){
+            document.getElementById('passworderror').innerHTML = " ";
+          }
+          else{
+            document.getElementById('passworderror').innerHTML = "** Enter valid Password (Should Contain a Lowercase,Uppercase,number )";
+            return false;
+          }
+          if(pass2.match(Password) || pass.match(Password) || Fullname.match(Password))
+          {
+            document.getElementById('passworderror').innerHTML = "** Enter valid Password";
+            return false;
+          }
+          if(CPassword.match(Password)){
+            document.getElementById('cpassworderror').innerHTML = " ";
+          }
+          else{
+            document.getElementById('cpassworderror').innerHTML = "** Password is not matching";
+            return false;
+          }
+          
+          
+        }
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+          }      
+          function myFunction1() {
+            var x = document.getElementById("confirm password");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+          }           
+
+    </script>
+</body>
+</html>
